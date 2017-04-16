@@ -15,4 +15,16 @@
     select cartID,c.goodsID,userID,goodsCount,goodName,goodPrice,Inventory from cart c left join goods g on c.goodsID=g.goodsID where c.userID=#{userID};
   </select>
   
+  <insert id="addGoodtoCart" parameterType="com.cart.eureka_feign.model.Cart" useGeneratedKeys="true" keyProperty="cartID" >
+  		insert into cart (goodsID,userID,goodsCount) values (#{goodsID},#{userID},#{goodsCount})
+  </insert>
+  
+  <update id="updateCountByGoodsID" parameterType="com.cart.eureka_feign.model.Cart" useGeneratedKeys="true" keyProperty="cartID">
+  		update cart set goodsCount=#{goodsCount} where userID=#{userID} and goodsID=#{goodsID};
+  </update>
+  
+ <delete id="deleteCart" parameterType="Integer" >
+ 		delete from cart where cartID=#{cartID};
+ </delete>
+  
 </mapper>

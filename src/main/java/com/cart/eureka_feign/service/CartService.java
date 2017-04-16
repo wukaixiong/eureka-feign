@@ -17,5 +17,22 @@ public class CartService {
 		// TODO Auto-generated method stub
 		return cartMapper.getCartByUserID(userID);
 	}
-	
+
+	public int addGoodtoCart(Cart cart) {
+		// TODO Auto-generated method stub
+		return cartMapper.addGoodtoCart(cart);
+	}
+
+	public int updateCountByGoodsID(Cart cart) {
+		// TODO Auto-generated method stub
+		return cartMapper.updateCountByGoodsID(cart);
+	}
+
+	public int deleteCart(int cartID) {
+		// TODO Auto-generated method stub
+		return cartMapper.deleteCart(cartID);
+	}
+
+
+
 }

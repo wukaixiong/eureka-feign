@@ -35,6 +35,7 @@ public class ShoppingController {
         }
         return user;
     }
+    //根据用户ID返回购物车
     @RequestMapping(value = "/getCartByUserID" ,method = RequestMethod.GET)
     @ResponseBody
     public List<Cart> getCartByUserID(@RequestParam int userID) {
@@ -45,14 +46,37 @@ public class ShoppingController {
         }
         return listCart;
     }
-    @RequestMapping(value = "/addGoodtoCartByUserID" ,method = RequestMethod.GET)
+    //添加到购物车 参数userID,goodsID,goodsCount
+    @RequestMapping(value = "/addGoodtoCart" ,method = RequestMethod.GET)
     @ResponseBody
-    public List<Cart> addGoodtoCartByUserID(@RequestParam int userID,@RequestParam int goodID) {
-    	List<Cart> listCart = cartService.getCartByUserID(userID);
+    public String addGoodtoCart(Cart cart) {
+    	int addFlag = cartService.addGoodtoCart(cart);
     	
-        if(!listCart.isEmpty()){
-            System.out.println("listCart.get(0).getGoodsCount():"+listCart.get(0).getGoodsCount());
+        if(addFlag>0){
+            System.out.println("addFlag:"+addFlag);
         }
-        return listCart;
+        return "sss";
+    }
+  //修改购物车 参数userID,goodsID,goodsCount （只修改数量)
+    @RequestMapping(value = "/updateCount" ,method = RequestMethod.GET)
+    @ResponseBody
+    public String updateCountByGoodsID(Cart cart) {
+    	int updateFlag = cartService.updateCountByGoodsID(cart);
+    	
+        if(updateFlag>0){
+            System.out.println("updateFlag:"+updateFlag);
+        }
+        return "修改成功";
+    }
+    //根据ID删除购物车中的内容
+    @RequestMapping(value = "/deleteCart" ,method = RequestMethod.GET)
+    @ResponseBody
+    public String deleteCart(@RequestParam int cartID) {
+    	int deleteFlag = cartService.deleteCart(cartID);
+    	
+        if(deleteFlag>0){
+            System.out.println("updateFlag:"+deleteFlag);
+        }
+        return "修改成功";
     }
 }
