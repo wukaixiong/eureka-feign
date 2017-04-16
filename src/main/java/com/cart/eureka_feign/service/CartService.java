@@ -33,6 +33,11 @@ public class CartService {
 		return cartMapper.deleteCart(cartID);
 	}
 
+	public List<Cart> getAllGoods() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 
 }

@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cart.eureka_feign.model.Cart;
+import com.cart.eureka_feign.model.Goods;
 import com.cart.eureka_feign.model.User;
 import com.cart.eureka_feign.service.CartService;
+import com.cart.eureka_feign.service.GoodsService;
 import com.cart.eureka_feign.service.UserService;
 
 @RestController
@@ -20,6 +22,8 @@ public class ShoppingController {
 	private UserService userService;
 	@Autowired
 	private CartService cartService;
+	@Autowired
+	private GoodsService goodsService;
     @RequestMapping(value = "/shopping" ,method = RequestMethod.GET)
     public void add(@RequestParam String code, @RequestParam Integer num) {
         System.out.println(num+"件"+code+"(商品编码)添加进购物车");
@@ -34,6 +38,17 @@ public class ShoppingController {
          
         }
         return user;
+    }
+    //根据返回所有商品
+    @RequestMapping(value = "/getAllGoods" ,method = RequestMethod.GET)
+    @ResponseBody
+    public List<Goods> getAllGoods() {
+    	List<Goods> listGoods = goodsService.getAllGoods();
+    	
+        if(!listGoods.isEmpty()){
+            System.out.println("listCart.get(0).getGoodsCount():"+listGoods.get(0).getGoodName());
+        }
+        return listGoods;
     }
     //根据用户ID返回购物车
     @RequestMapping(value = "/getCartByUserID" ,method = RequestMethod.GET)
