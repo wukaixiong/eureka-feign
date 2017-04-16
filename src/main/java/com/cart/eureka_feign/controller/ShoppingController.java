@@ -45,4 +45,14 @@ public class ShoppingController {
         }
         return listCart;
     }
+    @RequestMapping(value = "/addGoodtoCartByUserID" ,method = RequestMethod.GET)
+    @ResponseBody
+    public List<Cart> addGoodtoCartByUserID(@RequestParam int userID) {
+    	List<Cart> listCart = cartService.getCartByUserID(userID);
+    	
+        if(!listCart.isEmpty()){
+            System.out.println("listCart.get(0).getGoodsCount():"+listCart.get(0).getGoodsCount());
+        }
+        return listCart;
+    }
 }
