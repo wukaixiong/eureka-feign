@@ -47,7 +47,7 @@ public class ShoppingController {
     }
     @RequestMapping(value = "/addGoodtoCartByUserID" ,method = RequestMethod.GET)
     @ResponseBody
-    public List<Cart> addGoodtoCartByUserID(@RequestParam int userID) {
+    public List<Cart> addGoodtoCartByUserID(@RequestParam int userID,@RequestParam int goodID) {
     	List<Cart> listCart = cartService.getCartByUserID(userID);
     	
         if(!listCart.isEmpty()){
