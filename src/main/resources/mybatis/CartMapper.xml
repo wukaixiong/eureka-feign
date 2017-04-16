@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cart.eureka_feign.mapper.CartMapper">
+     <resultMap type="com.cart.eureka_feign.model.Cart" id="cartResultMap">
+        <id property="cartID" column="cartID"/>
+       
+        <result property="userID" column="userID"/>
+        <result property="goodsID" column="goodsID"/>
+        <result property="goodsCount" column="goodsCount"/>
+        <result property="goodName" column="goodName"/>
+        <result property="goodPrice" column="goodPrice"/>
+         <result property="Inventory" column="Inventory"/>
+    </resultMap>
+  <select id="getCartByUserID" resultMap="cartResultMap" resultType="com.cart.eureka_feign.model.Cart">
+    select cartID,c.goodsID,userID,goodsCount,goodName,goodPrice,Inventory from cart c left join goods g on c.goodsID=g.goodsID where c.userID=#{userID};
+  </select>
+  
+</mapper>

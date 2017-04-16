@@ -3,7 +3,7 @@ Implementation-Vendor: Pivotal Software, Inc.
 Implementation-Title: eureka-feign
 Implementation-Version: 0.0.1-SNAPSHOT
 Implementation-Vendor-Id: com.cart
-Build-Jdk: 1.7.0_79
-Built-By: KAI
+Build-Jdk: 1.6.0_13
+Built-By: mcx
 Created-By: Maven Integration for Eclipse
 
