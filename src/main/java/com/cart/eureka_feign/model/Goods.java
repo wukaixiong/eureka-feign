@@ -1,16 +1,16 @@
 package com.cart.eureka_feign.model;
 
 public class Goods {
-	private int goodID;
+	private int goodsID;
 	private String goodName;
 	private int goodPrice;//单价
 	private int Inventory;//库存
 //	private String createTime;
-	public int getGoodID() {
-		return goodID;
+	public int getGoodsID() {
+		return goodsID;
 	}
-	public void setGoodID(int goodID) {
-		this.goodID = goodID;
+	public void setGoodID(int goodsID) {
+		this.goodsID = goodsID;
 	}
 	public String getGoodName() {
 		return goodName;

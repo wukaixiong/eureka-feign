@@ -11,15 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cart.eureka_feign.model.Cart;
 import com.cart.eureka_feign.model.Goods;
-import com.cart.eureka_feign.model.User;
 import com.cart.eureka_feign.service.CartService;
 import com.cart.eureka_feign.service.GoodsService;
-import com.cart.eureka_feign.service.UserService;
 
 @RestController
 public class ShoppingController {
-	@Autowired
-	private UserService userService;
 	@Autowired
 	private CartService cartService;
 	@Autowired
@@ -29,16 +25,6 @@ public class ShoppingController {
         System.out.println(num+"件"+code+"(商品编码)添加进购物车");
     }
     
-    @RequestMapping("/getUserInfo")
-    @ResponseBody
-    public User getUserInfo() {
-        User user = userService.getUserInfo();
-        if(user!=null){
-            System.out.println("user.getName():"+user.getName());
-         
-        }
-        return user;
-    }
     //根据返回所有商品
     @RequestMapping(value = "/getAllGoods" ,method = RequestMethod.GET)
     @ResponseBody
@@ -64,13 +50,17 @@ public class ShoppingController {
     //添加到购物车 参数userID,goodsID,goodsCount
     @RequestMapping(value = "/addGoodtoCart" ,method = RequestMethod.GET)
     @ResponseBody
-    public String addGoodtoCart(Cart cart) {
+    public String addGoodtoCart(int goodsID,int goodsCount,int userId) {
+    	Cart cart=new Cart();
+    	cart.setGoodsID(goodsID);
+    	cart.setGoodsCount(goodsCount);
+    	cart.setUserID(userId);
     	int addFlag = cartService.addGoodtoCart(cart);
     	
         if(addFlag>0){
             System.out.println("addFlag:"+addFlag);
         }
-        return "sss";
+        return "添加成功";
     }
   //修改购物车 参数userID,goodsID,goodsCount （只修改数量)
     @RequestMapping(value = "/updateCount" ,method = RequestMethod.GET)
